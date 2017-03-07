@@ -16,7 +16,10 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "<!doctype html><html>Hi! This is the home page.<html>"
+    return """<!doctype html><html>
+      Hi! This is the home page.
+      <p><a href="/hello">Get greeted!</a></p>
+    <html>"""
 
 
 @app.route('/hello')
@@ -33,11 +36,34 @@ def say_hello():
         <h1>Hi There!</h1>
         <form action="/greet">
           What's your name? <input type="text" name="person">
+          <p>Choose your compliment</p>
+          <select name="compliment">
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+            <option value="{}">{}</option>
+          </select>
           <input type="submit" value="Submit">
         </form>
       </body>
     </html>
-    """
+    """.format(AWESOMENESS[0], AWESOMENESS[0], AWESOMENESS[1], AWESOMENESS[1],
+               AWESOMENESS[2], AWESOMENESS[2], AWESOMENESS[3], AWESOMENESS[3],
+               AWESOMENESS[4], AWESOMENESS[4], AWESOMENESS[5], AWESOMENESS[5],
+               AWESOMENESS[6], AWESOMENESS[6], AWESOMENESS[7], AWESOMENESS[7],
+               AWESOMENESS[8], AWESOMENESS[8], AWESOMENESS[9], AWESOMENESS[9],
+               AWESOMENESS[10], AWESOMENESS[10], AWESOMENESS[11], AWESOMENESS[11],
+               AWESOMENESS[12], AWESOMENESS[12], AWESOMENESS[13], AWESOMENESS[13])
 
 
 @app.route('/greet')
@@ -46,7 +72,7 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliment = request.args.get("compliment")
 
     return """
     <!doctype html>
